@@ -1,3 +1,19 @@
-<h2 id="title">Welcome to Ember</h2>
-
-{{outlet}}
+<Swiper
+  @loop={{false}}
+  @speed={{400}}
+  @spaceBetween={{100}}
+  @scrollbar={{hash el='.swiper-scrollbar' hide=true}} as |container|
+>
+  <container.slide>
+    Slide 1
+  </container.slide>
+  <container.slide>
+    Slide 2
+  </container.slide>
+  <container.slide>
+    Slide 3
+  </container.slide>
+  <container.pagination />
+  <container.navigation />
+  <container.scrollbar />
+</Swiper>
