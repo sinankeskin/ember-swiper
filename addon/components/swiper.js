@@ -42,11 +42,16 @@ export default class SwiperComponent extends Component {
 
   @action
   _initializeOptions(element) {
-    this.swiper = new Swiper(`#${element.id}`, this._options);
+    this.swiper = new Swiper(element, this._options);
   }
 
   @action
   _updateOptions() {
     this.swiper.update();
+  }
+
+  @action
+  _destroyOptions() {
+    this.swiper.destroy();
   }
 }

@@ -6,7 +6,7 @@ module.exports = {
   included(app) {
     this._super.included.apply(this, arguments);
 
-    // KioskBoard CSS + JS
+    // Swiper CSS + JS
     ['css', 'js'].forEach(ext => {
       app.import(`node_modules/swiper/${ext}/swiper.${ext}`);
     });

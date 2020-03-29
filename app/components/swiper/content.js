@@ -1,0 +1,1 @@
+export { default } from 'ember-swiper/components/swiper/content';

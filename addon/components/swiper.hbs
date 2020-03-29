@@ -3,6 +3,7 @@
   class="swiper-container"
   {{did-insert this._initializeOptions}}
   {{did-update this._updateOptions}}
+  {{will-destroy this._destroyOptions}}
 >
   <div class="swiper-wrapper">
     {{yield (hash slide=(component 'swiper/slide'))}}
@@ -17,3 +18,4 @@
     {{yield (hash scrollbar=(component 'swiper/scrollbar'))}}
   {{/if}}
 </div>
+{{yield (hash content=(component 'swiper/content' self=this.swiper))}}
