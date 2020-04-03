@@ -13,42 +13,42 @@ module.exports = {
     let dependencies = this.project.dependencies();
 
     if ('ember-cli-sass' in dependencies) {
-      this.preprocessor = 'sass';
+      this.extension = 'scss';
     } else if ('ember-cli-less' in dependencies) {
-      this.preprocessor = 'less';
+      this.extension = 'less';
     } else {
-      this.preprocessor = 'none';
+      this.extension = 'none';
     }
   },
 
   afterInstall() {
-    this.moveFiles(this.preprocessor);
-    this.writeImport(this.preprocessor);
+    if (this.extension !== 'none') {
+      this.moveFiles(this.extension);
+      this.writeImport(this.extension);
+    }
   },
 
   moveFiles(extension) {
-    if (extension !== 'none') {
-      const inputDir = path.join(__dirname, 'node_modules/swiper');
-      const outputDir = path.join('app', 'styles');
+    const inputDir = path.join(__dirname, 'node_modules/swiper');
+    const outputDir = path.join('app', 'styles');
 
-      if (!fs.existsSync(outputDir)) {
-        fs.mkdirSync(outputDir);
-      }
-
-      const files = [`swiper.${extension}`, 'components'];
-
-      if (extension === 'sass') {
-        files.push('scss');
-      } else if (extension === 'less') {
-        files.push('less');
-      }
-
-      files.forEach((file) => {
-        this.copyFolderSync(path.join(inputDir, file), path.join(outputDir, file), extension);
-      });
-
-      fs.renameSync(path.join(outputDir, `swiper.${extension}`), path.join(outputDir, `ember-swiper.${extension}`));
+    if (!fs.existsSync(outputDir)) {
+      fs.mkdirSync(outputDir);
     }
+
+    const files = [`swiper.${extension}`, 'components'];
+
+    if (extension === 'sass') {
+      files.push('scss');
+    } else if (extension === 'less') {
+      files.push('less');
+    }
+
+    files.forEach((file) => {
+      this.copyFolderSync(path.join(inputDir, file), path.join(outputDir, file), extension);
+    });
+
+    fs.renameSync(path.join(outputDir, `swiper.${extension}`), path.join(outputDir, `ember-swiper.${extension}`));
   },
 
   copyFolderSync(from, to, extension) {
@@ -64,22 +64,20 @@ module.exports = {
   },
 
   writeImport(extension) {
-    if (extension !== 'none') {
-      const importStatement = '\n@import "ember-swiper";\n';
+    const importStatement = '\n@import "ember-swiper";\n';
 
-      const stylePath = path.join('app', 'styles');
+    const stylePath = path.join('app', 'styles');
 
-      const file = path.join(stylePath, `app.${extension}`);
+    const file = path.join(stylePath, `app.${extension}`);
 
-      if (fs.existsSync(file)) {
-        this.ui.writeLine(`Added import statement to ${file}`);
+    if (fs.existsSync(file)) {
+      this.ui.writeLine(`Added import statement to ${file}`);
 
-        return this.insertIntoFile(file, importStatement);
-      } else {
-        this.ui.writeLine(`Created ${file}`);
+      return this.insertIntoFile(file, importStatement);
+    } else {
+      this.ui.writeLine(`Created ${file}`);
 
-        return fs.writeFile(file, importStatement);
-      }
+      return fs.writeFile(file, importStatement);
     }
   },
 };
