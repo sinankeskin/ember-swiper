@@ -7,8 +7,13 @@ module.exports = {
     this._super.included.apply(this, arguments);
 
     // Swiper CSS + JS
-    ['css', 'js'].forEach(ext => {
-      app.import(`node_modules/swiper/${ext}/swiper.${ext}`);
-    });
-  }
+    app.import('node_modules/swiper/js/swiper.js');
+
+    let hasSass = !!app.registry.availablePlugins['ember-cli-sass'];
+    let hasLess = !!app.registry.availablePlugins['ember-cli-less'];
+
+    if (!hasSass && !hasLess) {
+      app.import('node_modules/swiper/css/swiper.css');
+    }
+  },
 };
