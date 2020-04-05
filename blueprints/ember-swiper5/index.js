@@ -47,7 +47,11 @@ module.exports = {
       this.copyFolderSync(path.join(inputDir, folder), path.join(outputDir, folder), extension);
     });
 
-    const files = [`swiper.${extension}`, 'less/plugin.js'];
+    const files = [`swiper.${extension}`];
+
+    if (extension === 'less') {
+      files.push('less/plugin.js');
+    }
 
     files.forEach((file) => {
       fs.copyFileSync(path.join(inputDir, file), path.join(outputDir, file));
