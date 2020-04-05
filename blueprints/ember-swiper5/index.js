@@ -36,31 +36,32 @@ module.exports = {
       fs.mkdirSync(outputDir);
     }
 
-    const files = [`swiper.${extension}`, 'components'];
-
-    if (extension === 'sass') {
-      files.push('scss');
-    } else if (extension === 'less') {
-      files.push('less');
-    }
+    const files = [`swiper.${extension}`];
 
     files.forEach((file) => {
-      console.log(file);
-      this.copyFolderSync(path.join(inputDir, file), path.join(outputDir, file), extension);
+      fs.copyFileSync(path.join(inputDir, file), path.join(outputDir, file));
     });
 
     fs.renameSync(path.join(outputDir, `swiper.${extension}`), path.join(outputDir, `ember-swiper5.${extension}`));
+
+    const folders = ['components', `${extension}`];
+
+    folders.forEach((folder) => {
+      copyFolderSync(path.join(inputDir, folder), path.join(outputDir, folder), extension);
+    });
   },
 
   copyFolderSync(from, to, extension) {
-    fs.readdirSync(from).forEach((element) => {
-      if (fs.lstatSync(path.join(from, element)).isFile() && element.endsWith(extension)) {
-        fs.copyFileSync(path.join(from, element), path.join(to, element), fs.constants.COPYFILE_FICLONE_FORCE);
-      } else {
-        if (!fs.existsSync(to)) {
-          fs.mkdirSync(to);
-        }
+    if (!fs.existsSync(to) && !to.endsWith(`.${extension}`)) {
+      fs.mkdirSync(to);
+    }
 
+    fs.readdirSync(from).forEach((element) => {
+      if (fs.lstatSync(path.join(from, element)).isFile()) {
+        if (element.endsWith(`.${extension}`)) {
+          fs.copyFileSync(path.join(from, element), path.join(to, element));
+        }
+      } else {
         this.copyFolderSync(path.join(from, element), path.join(to, element), extension);
       }
     });
