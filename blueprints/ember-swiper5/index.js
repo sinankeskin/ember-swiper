@@ -47,7 +47,7 @@ module.exports = {
     const folders = ['components', `${extension}`];
 
     folders.forEach((folder) => {
-      copyFolderSync(path.join(inputDir, folder), path.join(outputDir, folder), extension);
+      this.copyFolderSync(path.join(inputDir, folder), path.join(outputDir, folder), extension);
     });
   },
 
