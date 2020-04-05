@@ -53,12 +53,14 @@ module.exports = {
   },
 
   copyFolderSync(from, to, extension) {
-    fs.mkdirSync(to);
-
     fs.readdirSync(from).forEach((element) => {
       if (fs.lstatSync(path.join(from, element)).isFile() && element.endsWith(extension)) {
-        fs.copyFileSync(path.join(from, element), path.join(to, element));
+        fs.copyFileSync(path.join(from, element), path.join(to, element), fs.constants.COPYFILE_FICLONE_FORCE);
       } else {
+        if (!fs.existsSync(to)) {
+          fs.mkdirSync(to);
+        }
+
         this.copyFolderSync(path.join(from, element), path.join(to, element), extension);
       }
     });
