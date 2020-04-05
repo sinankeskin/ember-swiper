@@ -34,7 +34,7 @@ module.exports = {
   },
 
   moveFiles(extension) {
-    const inputDir = path.join('node_modules', 'swiper', 'src');
+    const inputDir = path.join('node_modules', 'swiper');
     const outputDir = path.join('app', 'styles');
 
     if (!fs.existsSync(outputDir)) {
@@ -47,17 +47,23 @@ module.exports = {
       this.copyFolderSync(path.join(inputDir, folder), path.join(outputDir, folder), extension);
     });
 
-    const files = [`swiper.${extension}`];
+    const files = [
+      {
+        src: `swiper.${extension}`,
+        dst: `ember-swiper5.${extension}`,
+      },
+    ];
 
     if (extension === 'less') {
-      files.push('less/plugin.js');
+      files.push({
+        src: 'src/less/plugin.js',
+        dst: 'less/plugin.js',
+      });
     }
 
-    files.forEach((file) => {
-      fs.copyFileSync(path.join(inputDir, file), path.join(outputDir, file));
+    files.forEach(({ src, dst }) => {
+      fs.copyFileSync(path.join(inputDir, src), path.join(outputDir, dst));
     });
-
-    fs.renameSync(path.join(outputDir, `swiper.${extension}`), path.join(outputDir, `ember-swiper5.${extension}`));
   },
 
   copyFolderSync(from, to, extension) {
