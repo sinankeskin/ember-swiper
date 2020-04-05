@@ -2,8 +2,7 @@
   @loop={{false}}
   @speed={{400}}
   @spaceBetween={{100}}
-  @scrollbar={{hash el='.swiper-scrollbar' hide=true}}
-  @on={{hash init=(fn this.log)}} as |swiper|
+  @scrollbar={{hash el='.swiper-scrollbar' hide=true}} as |swiper|
 >
   <swiper.slide>
     Slide 1
@@ -17,9 +16,4 @@
   <swiper.pagination />
   <swiper.navigation />
   <swiper.scrollbar />
-  <swiper.content as |self|>
-    <button type="button" {{on 'click' (fn this.slideTo self)}}>
-      Move
-    </button>
-  </swiper.content>
 </Swiper>
