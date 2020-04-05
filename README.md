@@ -83,9 +83,11 @@ Full configuration
 </Swiper>
 ```
 
-Note: If you use sass or less; ember-swiper5 will be imported automatically.
-In ember-swiper5 file; after the //IMPORT_COMPONENTS line you should import the component(s) you need.
-Ex: For scrollbar: @import './components/scrollbar/scrollbar'; etc...
+> Note: If you use sass or less; ember-swiper5 will be imported automatically.
+
+> In ember-swiper5 file; after the //IMPORT_COMPONENTS line you should import the component(s) you need.
+
+> Ex: For scrollbar: @import './components/scrollbar/scrollbar'; etc...
 
 ## Contributing
 
