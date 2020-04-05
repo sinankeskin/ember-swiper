@@ -26,6 +26,7 @@ module.exports = {
   afterInstall() {
     if (this.extension !== 'none') {
       this.moveFiles(this.extension);
+
       return this.writeImport(this.extension);
     }
 
@@ -85,7 +86,7 @@ module.exports = {
     } else {
       this.ui.writeLine(`Created ${file}`);
 
-      return fs.writeFile(file, importStatement);
+      return fs.writeFileSync(file, importStatement);
     }
   },
 };
