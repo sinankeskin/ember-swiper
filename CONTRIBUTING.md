@@ -3,7 +3,7 @@
 ## Installation
 
 * `git clone <repository-url>`
-* `cd ember-swiper`
+* `cd ember-swiper5`
 * `npm install`
 
 ## Linting

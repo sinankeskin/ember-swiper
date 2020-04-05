@@ -12,7 +12,7 @@ export default class SwiperComponent extends Component {
   get _config() {
     const config = getOwner(this).resolveRegistration('config:environment') || {};
 
-    return config['ember-swiper'] || {};
+    return config['ember-swiper5'] || {};
   }
 
   @computed('_config')

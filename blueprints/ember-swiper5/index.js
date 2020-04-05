@@ -5,7 +5,7 @@ const fs = require('fs');
 const path = require('path');
 
 module.exports = {
-  description: 'Adds style imports for the ember-swiper addon.',
+  description: 'Adds style imports for the ember-swiper5 addon.',
 
   normalizeEntityName() {},
 
@@ -49,7 +49,7 @@ module.exports = {
       this.copyFolderSync(path.join(inputDir, file), path.join(outputDir, file), extension);
     });
 
-    fs.renameSync(path.join(outputDir, `swiper.${extension}`), path.join(outputDir, `ember-swiper.${extension}`));
+    fs.renameSync(path.join(outputDir, `swiper.${extension}`), path.join(outputDir, `ember-swiper5.${extension}`));
   },
 
   copyFolderSync(from, to, extension) {
@@ -65,7 +65,7 @@ module.exports = {
   },
 
   writeImport(extension) {
-    const importStatement = '\n@import "ember-swiper";\n';
+    const importStatement = '\n@import "ember-swiper5";\n';
 
     const stylePath = path.join('app', 'styles');
 

@@ -1,1 +1,1 @@
-export { default } from 'ember-swiper/components/swiper/pagination';
+export { default } from 'ember-swiper5/components/swiper/pagination';

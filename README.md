@@ -1,4 +1,4 @@
-ember-swiper
+ember-swiper5
 ==============================================================================
 
 [Short description of the addon.]
@@ -16,7 +16,7 @@ Installation
 ------------------------------------------------------------------------------
 
 ```
-ember install ember-swiper
+ember install ember-swiper5
 ```
 
 
