@@ -3,11 +3,16 @@
   "version": "1.0.0",
   "description": "The default blueprint for ember-cli addons.",
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "swiper",
+    "swiperjs",
+    "slider",
+    "ember-swiper",
+    "ember-slider"
   ],
-  "repository": "",
+  "repository": "https://github.com/sinankeskin/ember-swiper",
   "license": "MIT",
-  "author": "",
+  "author": "Sinan Keskin <sinan@kesk.in> (https://kesk.in)",
   "directories": {
     "doc": "doc",
     "test": "tests"
