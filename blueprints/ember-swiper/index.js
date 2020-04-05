@@ -45,6 +45,7 @@ module.exports = {
     }
 
     files.forEach((file) => {
+      console.log(file);
       this.copyFolderSync(path.join(inputDir, file), path.join(outputDir, file), extension);
     });
 
