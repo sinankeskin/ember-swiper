@@ -29,7 +29,7 @@ module.exports = {
   },
 
   moveFiles(extension) {
-    const inputDir = path.join(__dirname, 'node_modules/swiper');
+    const inputDir = path.join(__dirname, '../../node_modules/swiper');
     const outputDir = path.join('app', 'styles');
 
     if (!fs.existsSync(outputDir)) {
