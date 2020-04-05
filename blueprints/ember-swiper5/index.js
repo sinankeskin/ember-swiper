@@ -19,13 +19,17 @@ module.exports = {
     } else {
       this.extension = 'none';
     }
+
+    return;
   },
 
   afterInstall() {
     if (this.extension !== 'none') {
       this.moveFiles(this.extension);
-      this.writeImport(this.extension);
+      return this.writeImport(this.extension);
     }
+
+    return;
   },
 
   moveFiles(extension) {
