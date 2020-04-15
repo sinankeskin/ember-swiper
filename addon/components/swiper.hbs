@@ -18,4 +18,6 @@
     {{yield (hash scrollbar=(component 'swiper/scrollbar'))}}
   {{/if}}
 </div>
-{{yield (hash content=(component 'swiper/content' self=this.swiper))}}
+{{#if this.isLoaded}}
+  {{yield (hash content=(component 'swiper/content' self=this.swiper))}}
+{{/if}}

@@ -13,7 +13,8 @@
   <swiper.slide>
     Slide 3
   </swiper.slide>
-  <swiper.pagination />
-  <swiper.navigation />
   <swiper.scrollbar />
+  <swiper.content as |self|>
+    {{log self}}
+  </swiper.content>
 </Swiper>

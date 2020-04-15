@@ -3,10 +3,20 @@ import { getOwner } from '@ember/application';
 import { assign } from '@ember/polyfills';
 import { action, computed, get } from '@ember/object';
 import { guidFor } from '@ember/object/internals';
+import { tracked } from '@glimmer/tracking';
 import Component from '@glimmer/component';
 
 export default class SwiperComponent extends Component {
   elementId = guidFor(this);
+
+  @tracked
+  isLoaded;
+
+  constructor() {
+    super(...arguments);
+
+    this.isLoaded = false;
+  }
 
   @computed
   get _config() {
@@ -27,7 +37,7 @@ export default class SwiperComponent extends Component {
   _componentOptions() {
     const options = {};
 
-    Object.keys(this.args).forEach(option => {
+    Object.keys(this.args).forEach((option) => {
       const _option = get(this.args, option);
 
       if (typeof _option === 'object') {
@@ -43,6 +53,8 @@ export default class SwiperComponent extends Component {
   @action
   _initializeOptions(element) {
     this.swiper = new Swiper(element, this._options);
+
+    this.isLoaded = true;
   }
 
   @action
