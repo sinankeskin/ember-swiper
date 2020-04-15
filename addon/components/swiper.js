@@ -10,12 +10,12 @@ export default class SwiperComponent extends Component {
   elementId = guidFor(this);
 
   @tracked
-  isLoaded;
+  swiper;
 
   constructor() {
     super(...arguments);
 
-    this.isLoaded = false;
+    this.swiper = null;
   }
 
   @computed
@@ -53,8 +53,6 @@ export default class SwiperComponent extends Component {
   @action
   _initializeOptions(element) {
     this.swiper = new Swiper(element, this._options);
-
-    this.isLoaded = true;
   }
 
   @action
