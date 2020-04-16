@@ -15,6 +15,6 @@
   </swiper.slide>
   <swiper.scrollbar />
   <swiper.content as |self|>
-    {{log self}}
+    {{log (get self 'params')}}
   </swiper.content>
 </Swiper>
