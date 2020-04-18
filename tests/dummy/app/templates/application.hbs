@@ -2,7 +2,8 @@
   @loop={{false}}
   @speed={{400}}
   @spaceBetween={{100}}
-  @scrollbar={{hash el='.swiper-scrollbar' hide=true}} as |swiper|
+  @scrollbar={{hash el='.swiper-scrollbar' hide=true}}
+  @on={{hash slideChange=(fn this.slideChange)}} as |swiper|
 >
   <swiper.slide>
     Slide 1
@@ -14,7 +15,4 @@
     Slide 3
   </swiper.slide>
   <swiper.scrollbar />
-  <swiper.content as |self|>
-    {{log (get self 'params')}}
-  </swiper.content>
 </Swiper>

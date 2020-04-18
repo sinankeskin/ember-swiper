@@ -52,7 +52,35 @@ export default class SwiperComponent extends Component {
 
   @action
   _initializeOptions(element) {
+    const slideEvents = [
+      'slideChange',
+      'slideChangeTransitionStart',
+      'slideChangeTransitionEnd',
+      'slideNextTransitionStart',
+      'slideNextTransitionEnd',
+      'slidePrevTransitionStart',
+      'slidePrevTransitionEnd',
+    ];
+
+    if (this._options.on) {
+      slideEvents.forEach((eventName) => {
+        if (this._options.on[eventName] && typeof this._options.on[eventName] === 'function') {
+          delete this._options.on[eventName];
+        }
+      });
+    }
+
     this.swiper = new Swiper(element, this._options);
+
+    if (this.args.on) {
+      slideEvents.forEach((eventName) => {
+        if (this.args.on[eventName] && typeof this.args.on[eventName] === 'function') {
+          this.swiper.on(eventName, () => {
+            this.args.on[eventName](this.swiper);
+          });
+        }
+      });
+    }
   }
 
   @action

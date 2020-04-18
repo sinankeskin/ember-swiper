@@ -83,6 +83,8 @@ Full configuration
 </Swiper>
 ```
 
+All slideXXX events returns swiper instance. That way you can reach all properties like realIndex etc...
+
 > Note: If you use sass or less; ember-swiper5 will be imported automatically.
 
 > In ember-swiper5 file; after the //IMPORT_COMPONENTS line you should import the component(s) you need.
