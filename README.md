@@ -73,13 +73,21 @@ Full configuration
   <swiper.navigation />
   <!-- Same as @pagination -->
   <swiper.scrollbar />
-  <!-- If you want to reach the instance you should use swiper.content component. This yields the instance. -->
+  <!-- If you want to reach the instance you should use swiper.header or swiper.footer component. This yields the instance. -->
+  <!-- swiper.content component is deprecated now. -->
+  <!-- swiper.header will place before the slider no matter where you put. -->
+  <!-- swiper.footer will place after the slider no matter where you put. -->
   <!-- That way you can reach all parameters and invoke methods like slideTo etc... -->
-  <swiper.content as |self|>
+  <swiper.header as |self|>
     <button type="button" {{on 'click' (fn this.slideTo self)}}>
       Move
     </button>
-  </swiper.content>
+  </swiper.header>
+  <swiper.footer as |self|>
+    <button type="button" {{on 'click' (fn this.slideTo self)}}>
+      Move
+    </button>
+  </swiper.footer>  
 </Swiper>
 ```
 

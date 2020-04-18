@@ -1,3 +1,6 @@
+{{#if this.swiper}}
+  {{yield (hash header=(component 'swiper/content' self=this.swiper))}}
+{{/if}}
 <div
   id={{this.elementId}}
   class="swiper-container"
@@ -20,5 +23,5 @@
   {{/if}}
 </div>
 {{#if this.swiper}}
-  {{yield (hash content=(component 'swiper/content' self=this.swiper))}}
+  {{yield (hash footer=(component 'swiper/content' self=this.swiper))}}
 {{/if}}
