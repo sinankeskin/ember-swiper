@@ -1,7 +1,7 @@
 {
   "name": "ember-swiper5",
   "version": "1.1.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "Ember addon for Swiper slider library.",
   "keywords": [
     "ember-addon",
     "swiper",
