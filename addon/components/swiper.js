@@ -1,4 +1,3 @@
-/* globals Swiper */
 import { getOwner } from '@ember/application';
 import { assign } from '@ember/polyfills';
 import { action, computed, get } from '@ember/object';
@@ -52,35 +51,66 @@ export default class SwiperComponent extends Component {
 
   @action
   _initializeOptions(element) {
-    const slideEvents = [
-      'slideChange',
-      'slideChangeTransitionStart',
-      'slideChangeTransitionEnd',
-      'slideNextTransitionStart',
-      'slideNextTransitionEnd',
-      'slidePrevTransitionStart',
-      'slidePrevTransitionEnd',
-    ];
+    import('swiper')
+      .then((module) => {
+        const slideEvents = [
+          'slideChange',
+          'slideChangeTransitionStart',
+          'slideChangeTransitionEnd',
+          'slideNextTransitionStart',
+          'slideNextTransitionEnd',
+          'slidePrevTransitionStart',
+          'slidePrevTransitionEnd',
+        ];
 
-    if (this._options.on) {
-      slideEvents.forEach((eventName) => {
-        if (this._options.on[eventName] && typeof this._options.on[eventName] === 'function') {
-          delete this._options.on[eventName];
-        }
-      });
-    }
-
-    this.swiper = new Swiper(element, this._options);
-
-    if (this.args.on) {
-      slideEvents.forEach((eventName) => {
-        if (this.args.on[eventName] && typeof this.args.on[eventName] === 'function') {
-          this.swiper.on(eventName, () => {
-            this.args.on[eventName](this.swiper);
+        if (this._options.on) {
+          slideEvents.forEach((eventName) => {
+            if (this._options.on[eventName] && typeof this._options.on[eventName] === 'function') {
+              delete this._options.on[eventName];
+            }
           });
         }
+
+        const modules = [];
+        const importedModules = this._config['imports'];
+
+        if (!importedModules || importedModules === '*' || importedModules === ['*']) {
+          Object.keys(module).forEach((m) => {
+            if (m !== 'Swiper') {
+              modules.push(module[m]);
+            }
+          });
+        } else {
+          Object.keys(module).forEach((m) => {
+            if (m !== 'Swiper') {
+              importedModules.forEach((i) => {
+                if (module[m].name === i) {
+                  modules.push(module[m]);
+                }
+              });
+            }
+          });
+        }
+
+        const Swiper = module.Swiper;
+
+        Swiper.use(modules);
+
+        this.swiper = new Swiper(element, this._options);
+
+        if (this.args.on) {
+          slideEvents.forEach((eventName) => {
+            if (this.args.on[eventName] && typeof this.args.on[eventName] === 'function') {
+              this.swiper.on(eventName, () => {
+                this.args.on[eventName](this.swiper);
+              });
+            }
+          });
+        }
+      })
+      .catch((error) => {
+        console.log('Dynamic import failed. Reason:' + error);
       });
-    }
   }
 
   @action

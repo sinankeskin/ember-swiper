@@ -2,12 +2,18 @@
 
 module.exports = {
   name: require('./package').name,
-
+  options: {
+    autoImport: {
+      alias: {
+        swiper: 'swiper/js/swiper.esm',
+      },
+    },
+    babel: {
+      plugins: [require.resolve('ember-auto-import/babel-plugin')],
+    },
+  },
   included(app) {
     this._super.included.apply(this, arguments);
-
-    // Swiper CSS + JS
-    app.import('node_modules/swiper/js/swiper.js');
 
     let hasSass =
       !!app.registry.availablePlugins['ember-cli-sass'] || !!app.registry.availablePlugins['@csstools/postcss-sass'];

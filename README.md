@@ -26,6 +26,42 @@ ENV['ember-swiper5'] = {
   loop: true, // etc
 };
 ```
+#### As of >= v1.2.0 dynamic imports added to addon.
+
+You can import only modules you want.
+
+Avaiable module names:
+- a11y
+- autoplay
+- controller
+- effect-coverflow
+- effect-cube
+- effect-fade
+- effect-flip
+- hash-navigation
+- history
+- keyboard
+- lazy
+- mousewheel
+- navigation
+- pagination
+- parallax
+- scrollbar
+- thumbs
+- virtual
+- zoom
+
+```javascript
+ENV['ember-swiper5'] = {
+  imports: "*" // or ["*"] for every modules
+};
+```
+
+```javascript
+ENV['ember-swiper5'] = {
+  imports: ["a11y", "pagination", "navigation"] // only these modules
+};
+```
 
 Default configuration
 
