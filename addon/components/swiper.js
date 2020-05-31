@@ -2,20 +2,10 @@ import { getOwner } from '@ember/application';
 import { assign } from '@ember/polyfills';
 import { action, computed, get } from '@ember/object';
 import { guidFor } from '@ember/object/internals';
-import { tracked } from '@glimmer/tracking';
 import Component from '@glimmer/component';
 
 export default class SwiperComponent extends Component {
   elementId = guidFor(this);
-
-  @tracked
-  swiper;
-
-  constructor() {
-    super(...arguments);
-
-    this.swiper = null;
-  }
 
   @computed
   get _config() {
