@@ -4,11 +4,9 @@ Ember addon for [Swiper](https://swiperjs.com/) slider library.
 
 ## Compatibility
 
-- Ember.js v3.12 or above
+- Ember.js v3.16 or above
 - Ember CLI v2.13 or above
 - Node.js v10 or above
-
-## Installation
 
 ```
 ember install ember-swiper5
@@ -26,11 +24,13 @@ ENV['ember-swiper5'] = {
   loop: true, // etc
 };
 ```
+
 #### As of >= v1.2.0 dynamic imports added to addon.
 
 You can import only modules you want.
 
 Avaiable module names:
+
 - a11y
 - autoplay
 - controller
@@ -53,13 +53,13 @@ Avaiable module names:
 
 ```javascript
 ENV['ember-swiper5'] = {
-  imports: "*" // or ["*"] for every modules
+  imports: '*', // or ["*"] for every modules
 };
 ```
 
 ```javascript
 ENV['ember-swiper5'] = {
-  imports: ["a11y", "pagination", "navigation"] // only these modules
+  imports: ['a11y', 'pagination', 'navigation'], // only these modules
 };
 ```
 
@@ -123,7 +123,7 @@ Full configuration
     <button type="button" {{on 'click' (fn this.slideTo self)}}>
       Move
     </button>
-  </swiper.footer>  
+  </swiper.footer>
 </Swiper>
 ```
 
