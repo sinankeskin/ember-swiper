@@ -1,9 +1,9 @@
-import { getOwner } from '@ember/application';
+import Component from '@glimmer/component';
+import { action } from '@ember/object';
 import { assign } from '@ember/polyfills';
-import { action, computed } from '@ember/object';
+import { getOwner } from '@ember/application';
 import { guidFor } from '@ember/object/internals';
 import { tracked } from '@glimmer/tracking';
-import Component from '@glimmer/component';
 
 export default class SwiperComponent extends Component {
   elementId = guidFor(this);
@@ -11,14 +11,12 @@ export default class SwiperComponent extends Component {
   @tracked
   swiper;
 
-  @computed
   get _config() {
     const config = getOwner(this).resolveRegistration('config:environment') || {};
 
     return config['ember-swiper5'] || {};
   }
 
-  @computed('_componentOptions', '_config')
   get _options() {
     const options = {};
 
@@ -27,7 +25,6 @@ export default class SwiperComponent extends Component {
     return options;
   }
 
-  @computed('args')
   get _componentOptions() {
     const options = {};
 
