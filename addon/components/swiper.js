@@ -98,7 +98,7 @@ export default class SwiperComponent extends Component {
           slideEvents.forEach((eventName) => {
             if (this.args.on[eventName] && typeof this.args.on[eventName] === 'function') {
               this.swiper.on(eventName, () => {
-                this.args.on[eventName].call(this.swiper);
+                this.args.on[eventName](this.swiper);
               });
             }
           });
