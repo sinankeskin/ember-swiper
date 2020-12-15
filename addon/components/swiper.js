@@ -1,9 +1,10 @@
+import { cached, tracked } from '@glimmer/tracking';
+
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { assign } from '@ember/polyfills';
 import { getOwner } from '@ember/application';
 import { guidFor } from '@ember/object/internals';
-import { tracked } from '@glimmer/tracking';
 
 export default class SwiperComponent extends Component {
   elementId = guidFor(this);
@@ -11,12 +12,14 @@ export default class SwiperComponent extends Component {
   @tracked
   swiper;
 
+  @cached
   get _config() {
     const config = getOwner(this).resolveRegistration('config:environment') || {};
 
     return config['ember-swiper5'] || {};
   }
 
+  @cached
   get _options() {
     const options = {};
 
@@ -25,6 +28,7 @@ export default class SwiperComponent extends Component {
     return options;
   }
 
+  @cached
   get _componentOptions() {
     const options = {};
 
@@ -94,7 +98,7 @@ export default class SwiperComponent extends Component {
           slideEvents.forEach((eventName) => {
             if (this.args.on[eventName] && typeof this.args.on[eventName] === 'function') {
               this.swiper.on(eventName, () => {
-                this.args.on[eventName](this.swiper);
+                this.args.on[eventName].call(this.swiper);
               });
             }
           });
