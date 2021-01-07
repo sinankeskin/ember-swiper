@@ -16,7 +16,8 @@ module.exports = {
     this._super.included.apply(this, arguments);
 
     let hasSass =
-      !!app.registry.availablePlugins['ember-cli-sass'] || !!app.registry.availablePlugins['@csstools/postcss-sass'];
+      !!app.registry.availablePlugins['ember-cli-sass'] ||
+      !!app.registry.availablePlugins['@csstools/postcss-sass'];
     let hasLess = !!app.registry.availablePlugins['ember-cli-less'];
 
     if (!hasSass && !hasLess) {
