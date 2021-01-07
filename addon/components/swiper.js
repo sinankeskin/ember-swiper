@@ -14,7 +14,8 @@ export default class SwiperComponent extends Component {
 
   @cached
   get _config() {
-    const config = getOwner(this).resolveRegistration('config:environment') || {};
+    const config =
+      getOwner(this).resolveRegistration('config:environment') || {};
 
     return config['ember-swiper5'] || {};
   }
@@ -61,7 +62,10 @@ export default class SwiperComponent extends Component {
 
         if (this._options.on) {
           slideEvents.forEach((eventName) => {
-            if (this._options.on[eventName] && typeof this._options.on[eventName] === 'function') {
+            if (
+              this._options.on[eventName] &&
+              typeof this._options.on[eventName] === 'function'
+            ) {
               delete this._options.on[eventName];
             }
           });
@@ -70,7 +74,11 @@ export default class SwiperComponent extends Component {
         const modules = [];
         const importedModules = this._config['imports'];
 
-        if (!importedModules || importedModules === '*' || importedModules === ['*']) {
+        if (
+          !importedModules ||
+          importedModules === '*' ||
+          importedModules === ['*']
+        ) {
           Object.keys(module).forEach((m) => {
             if (m !== 'Swiper') {
               modules.push(module[m]);
@@ -96,7 +104,10 @@ export default class SwiperComponent extends Component {
 
         if (this.args.on) {
           slideEvents.forEach((eventName) => {
-            if (this.args.on[eventName] && typeof this.args.on[eventName] === 'function') {
+            if (
+              this.args.on[eventName] &&
+              typeof this.args.on[eventName] === 'function'
+            ) {
               this.swiper.on(eventName, () => {
                 this.args.on[eventName](this.swiper);
               });
