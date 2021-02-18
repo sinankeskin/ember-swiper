@@ -29,7 +29,7 @@ ENV['ember-swiper5'] = {
 
 You can import only modules you want.
 
-Avaiable module names:
+Available module names:
 
 - a11y
 - autoplay
