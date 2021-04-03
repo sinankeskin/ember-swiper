@@ -122,11 +122,11 @@ export default class SwiperComponent extends Component {
 
   @action
   _updateOptions() {
-    this.swiper.update();
+    this.swiper?.update();
   }
 
   @action
   _destroyOptions() {
-    this.swiper.destroy();
+    this.swiper?.destroy();
   }
 }
