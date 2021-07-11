@@ -41,7 +41,7 @@
     "ember-cli-htmlbars": "^5.7.1",
     "swiper": "^5.4.5",
     "tracked-toolbox": "^1.2.3",
-    "webpack": "^5.42.0"
+    "webpack": "^5.44.0"
   },
   "devDependencies": {
     "@ember/optional-features": "^2.0.0",
